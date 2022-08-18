@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'main_page.dart';
+import 'package:http/http.dart';
 
 
 void main() {
@@ -46,6 +47,9 @@ class _MyAppState extends State<MyApp> {
     setState(() {
 
     });
+  }
+  Future fetchNotes() async {
+
   }
 
   @override
