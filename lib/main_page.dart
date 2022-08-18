@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 
 class Home extends StatefulWidget {
@@ -9,6 +12,14 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  List _items = [];
+  Future<void> readJson() async {
+    final String response = await rootBundle.loadString('assets/sample.json');
+    final data = await json.decode(response);
+    setState(() {
+      _items = data["items"];
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +58,7 @@ class _HomeState extends State<Home> {
                 itemBuilder: (context,i){
                   return Card(child: Padding(
                     padding: EdgeInsets.all(20.0),
-                    child: Text("$i Card"),
+                    child: Text(_items[index]["id"]),
                   ),);
                 }),
           ),

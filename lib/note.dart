@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 class Note{
   String text;
-  String title_text;
+  String text_name;
 
 
-  Note(this.text, this.title_text);
+  Note(this.text, this.text_name);
 
   Note.fromJson(Map<String, dynamic> json){
-    title_text = json['title_text'];
+    text_name = json['text_name'];
     text = json['text'];
   }
 }
