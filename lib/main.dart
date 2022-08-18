@@ -21,6 +21,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
   }
+
   starting()async{
     SharedPreferences pref = await SharedPreferences.getInstance();
     if(pref.getInt("thememode")!=null ){

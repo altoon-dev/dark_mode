@@ -19,7 +19,6 @@ class _HomeState extends State<Home> {
           Text("Text Name", style: TextStyle(
             fontSize: 40,
             fontWeight: FontWeight.bold,
-            color: Colors.white
           ),),
           Center(
             child: IconButton(
@@ -38,14 +37,14 @@ class _HomeState extends State<Home> {
           SizedBox(height: 20.0,
             width: 150.0,
             child: Divider(
-              color: Colors.teal[100],
+              color: Color(0xFFEBEBEB),
             ),),
           Expanded(
             child: ListView.builder(
                 itemCount: 20,
                 itemBuilder: (context,i){
                   return Card(child: Padding(
-                    padding: const EdgeInsets.all(20.0),
+                    padding: EdgeInsets.all(20.0),
                     child: Text("$i Card"),
                   ),);
                 }),
