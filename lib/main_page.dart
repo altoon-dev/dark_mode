@@ -16,6 +16,11 @@ class _HomeState extends State<Home> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          Text("Text Name", style: TextStyle(
+            fontSize: 40,
+            fontWeight: FontWeight.bold,
+            color: Colors.white
+          ),),
           Center(
             child: IconButton(
               icon: Icon(Icons.toggle_on_outlined, color: Color(0xFF339ECD,),
@@ -44,9 +49,8 @@ class _HomeState extends State<Home> {
                     child: Text("$i Card"),
                   ),);
                 }),
-          )
+          ),
         ],
-
       ),
     );
   }
