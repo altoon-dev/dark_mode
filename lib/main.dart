@@ -17,7 +17,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
   starting()async{
@@ -49,10 +48,11 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Home(togglecall: toggletheme,),
       theme: ThemeData(
           primaryColor: Colors.red,
-          cardColor: Colors.lightBlueAccent
+          cardColor: Colors.white
       ),
       darkTheme: ThemeData.dark().copyWith(
           primaryColor: Colors.black45,

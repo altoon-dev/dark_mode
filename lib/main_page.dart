@@ -15,12 +15,26 @@ class _HomeState extends State<Home> {
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: [Center(
-          child: IconButton(
-            icon: Icon(Icons.toggle_on_outlined, color: Color(0xFF339ECD),),
-            onPressed: widget.togglecall,
+        children: [
+          Center(
+            child: IconButton(
+              icon: Icon(Icons.toggle_on_outlined, color: Color(0xFF339ECD,),
+                size: 40,),
+              onPressed: widget.togglecall,
+            ),
           ),
-        ),
+          Center(
+            child: IconButton(
+              icon: Icon(Icons.bedtime_outlined, color: Color(0xFF6B6B6B),
+                size: 40,),
+              onPressed: widget.togglecall,
+            ),
+          ),
+          SizedBox(height: 20.0,
+            width: 150.0,
+            child: Divider(
+              color: Colors.teal[100],
+            ),),
           Expanded(
             child: ListView.builder(
                 itemCount: 20,
