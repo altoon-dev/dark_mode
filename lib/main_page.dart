@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import 'package:universal_translator/universal_translator.dart';
 import 'note.dart';
 
 class Home extends StatefulWidget {
@@ -14,6 +14,23 @@ class Home extends StatefulWidget {
 class HomeState extends State<Home> {
   String translated = 'Translation';
   Note note = Note();
+  String path = "https://nlp-translation.p.rapidapi.com/v1/translate";
+  Map<String,dynamic> headers = { "x-rapidapi-key": "MY_API_KEY" }
+// //starts
+//   String responsePattern(Response response) {
+//     if (response.statusCode == 200 && response.data['status'] == 200) {
+//       dynamic data = response.data;
+//       return data["translated_text"][data["to"]];
+//     }
+//     return null;
+//   }
+//
+//   Map<String,dynamic> bodyPattern(String text, Locale to) => {
+//     "text": text,
+//     "to": to.toLanguageTag(),
+//     "from": "pt"
+//   };
+  //ends
 
   Future<void> readJson() async {
     final String response = await rootBundle.loadString('assets/sample.json');
@@ -27,7 +44,7 @@ class HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Home Page"),
+        title: const Text("Main Page"),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -39,7 +56,7 @@ class HomeState extends State<Home> {
               fontWeight: FontWeight.w500,
             ),
           ),
-          SizedBox(height: 20,),
+          const SizedBox(height: 20,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -84,10 +101,10 @@ class HomeState extends State<Home> {
                         padding: const EdgeInsets.all(20.0),
                         child: Text(
                           '${note.text}',
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Color(0xFF575767)
                           ),
-                        ),
+                        ).translate(),
                       ),
                     );
                   },

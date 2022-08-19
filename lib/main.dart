@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart'
-    show SharedPreferences;
+import 'package:shared_preferences/shared_preferences.dart' show SharedPreferences;
 import 'main_page.dart';
 
 void main() {
