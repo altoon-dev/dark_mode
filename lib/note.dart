@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-class Note{
-  String text;
-  String text_name;
+class Note {
+  String? textName;
+  String? text;
 
-
-  Note(this.text, this.text_name);
+  Note({this.textName, this.text});
 
   Note.fromJson(Map<String, dynamic> json){
-    text_name = json['text_name'];
+    textName = json['text_name'];
     text = json['text'];
   }
 }
