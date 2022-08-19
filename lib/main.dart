@@ -1,73 +1,62 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shared_preferences/shared_preferences.dart'
+    show SharedPreferences;
 import 'main_page.dart';
-import 'package:http/http.dart';
-import 'dart:convert';
-
-
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
-  _MyAppState createState() => _MyAppState();
+  MyAppState createState() => MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
-
+class MyAppState extends State<MyApp> {
   int thememode = 1;
-
 
   @override
   void initState() {
     super.initState();
   }
 
-  starting()async{
+  starting() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    if(pref.getInt("thememode")!=null ){
+    if (pref.getInt("thememode") != null) {
       thememode = pref.getInt("thememode")!;
-    }else{
-      pref.setInt("thememode", thememode );
+    } else {
+      pref.setInt("thememode", thememode);
     }
-    setState(() {
-
-    });
-
+    setState(() {});
   }
-  toggletheme()async{
+
+  toggletheme() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    if(pref.getInt("thememode")==1 ){
-      pref.setInt("thememode", 0 );
+    if (pref.getInt("thememode") == 1) {
+      pref.setInt("thememode", 0);
       thememode = 0;
-    }else{
-      pref.setInt("thememode", 1 );
+    } else {
+      pref.setInt("thememode", 1);
       thememode = 1;
     }
-    setState(() {
-
-    });
+    setState(() {});
   }
-  Future fetchNotes() async {
 
-  }
+  Future fetchNotes() async {}
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Home(togglecall: toggletheme,),
-      theme: ThemeData(
-          primaryColor: Colors.red,
-          cardColor: Colors.white
+      home: Home(
+        togglecall: toggletheme,
       ),
-      darkTheme: ThemeData.dark().copyWith(
-          primaryColor: Colors.black45,
-          cardColor: Colors.black87
-      ),
-      themeMode: thememode==1? ThemeMode.dark:ThemeMode.light,
+      theme: ThemeData(primaryColor: Colors.red, cardColor: Colors.white),
+      darkTheme: ThemeData.dark()
+          .copyWith(primaryColor: Colors.black45, cardColor: Colors.black87),
+      themeMode: thememode == 1 ? ThemeMode.dark : ThemeMode.light,
     );
   }
 }

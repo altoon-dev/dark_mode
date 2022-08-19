@@ -4,24 +4,17 @@ import 'package:flutter/services.dart';
 
 import 'note.dart';
 
-
 class Home extends StatefulWidget {
-  var togglecall;
-  Home({this.togglecall});
+  final togglecall;
+  const Home({Key? key, this.togglecall}) : super(key: key);
   @override
-  _HomeState createState() => _HomeState();
+  HomeState createState() => HomeState();
 }
 
-class _HomeState extends State<Home> {
-  // List _items = [];
-  // Future<void> readJson() async {
-  //   final String response = await rootBundle.loadString('assets/sample.json');
-  //   final data = await json.decode(response);
-  //   setState(() {
-  //     _items = data["items"];
-  //   });
-  late Note note;
-  @override
+class HomeState extends State<Home> {
+  String translated = 'Translation';
+  Note note = Note();
+
   Future<void> readJson() async {
     final String response = await rootBundle.loadString('assets/sample.json');
     final data = await json.decode(response);
@@ -34,43 +27,73 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home Page"),
+        title: const Text("Home Page"),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text("Text Name", style: TextStyle(
-            fontSize: 40,
-            fontWeight: FontWeight.bold,
-          ),),
-          Center(
-            child: IconButton(
-              icon: Icon(Icons.toggle_on_outlined, color: Color(0xFF339ECD,),
-                size: 40,),
-              onPressed: widget.togglecall,
+          Text(
+            "${note.textName}",
+            style: const TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.w500,
             ),
           ),
-          Center(
-            child: IconButton(
-              icon: Icon(Icons.bedtime_outlined, color: Color(0xFF6B6B6B),
-                size: 40,),
-              onPressed: widget.togglecall,
-            ),
+          SizedBox(height: 20,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              IconButton(
+                  icon: const Icon(
+                    Icons.toggle_on_outlined,
+                    color: Color(
+                      0xFF339ECD,
+                    ),
+                    size: 40,
+                  ),
+                  onPressed: widget.togglecall,
+                ),
+              IconButton(
+                  icon: const Icon(
+                    Icons.bedtime_outlined,
+                    color: Color(0xFF6B6B6B),
+                    size: 40,
+                  ),
+                  onPressed: (() {
+                    widget.togglecall;
+                    })
+              ),
+            ],
           ),
-          SizedBox(height: 20.0,
+          const SizedBox(
+            height: 20.0,
             width: 150.0,
             child: Divider(
               color: Color(0xFFEBEBEB),
-            ),),
+            ),
+          ),
           Expanded(
-            child: ListView.builder(
-                itemCount: 20,
-                itemBuilder: (context,i){
-                  return Card(child: Padding(
-                    padding: EdgeInsets.all(20.0),
-                    child: Text(note['text_name']),
-                  ),);
-                }),
+            child: FutureBuilder(
+              future: readJson(),
+              builder: (context, snapshot) {
+                return ListView.builder(
+                  itemCount: 20,
+                  itemBuilder: (context, i) {
+                    return Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Text(
+                          '${note.text}',
+                          style: TextStyle(
+                            color: Color(0xFF575767)
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
           ),
         ],
       ),
